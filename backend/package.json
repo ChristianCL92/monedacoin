@@ -4,7 +4,8 @@
   "description": "monedacoin blockchain",
   "main": "server.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server.mjs",
+    "dev-node": "cross-env CREATING_DYNAMIC_PORT='active' nodemon server.mjs"
   },
   "author": "Christian Lopez",
   "license": "MIT",
