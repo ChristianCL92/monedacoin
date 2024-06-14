@@ -1,5 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import Blockchain from './models/Blockchain.mjs';
+import blockchainRouter from './routes/blockchain-router.mjs';
 
 dotenv.config({ path: './config/.env' });
 
@@ -11,9 +13,11 @@ const credentials = {
 
 }
 
+export const blockchain = new Blockchain();
 
 const app = express();
 app.use(express.json());
+app.use('/api/v1/blockchain', blockchainRouter);
 
 
 
