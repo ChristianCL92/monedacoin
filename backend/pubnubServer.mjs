@@ -1,4 +1,5 @@
 import PubNub from 'pubnub';
+import Transaction from './models/Transactions.mjs';
 
 const CHANNELS = {
   BLOCKCHAIN: 'BLOCKCHAIN',
@@ -36,9 +37,9 @@ export default class PubNubServer {
         const { channel, message } = msgObject;
         const msg = JSON.parse(message);
 
-        console.log(
+         console.log(
           `Meddelande mottagits på kanal: ${channel}, meddelande: ${message}`
-        );
+        ); 
 
                 switch (channel) {
                   case CHANNELS.BLOCKCHAIN:
@@ -49,22 +50,19 @@ export default class PubNubServer {
                     });
                     break;
                   case CHANNELS.TRANSACTION:
-                    if (
-                      !this.transactionPool.transactionExist({
-                        address: this.wallet.publicKey,
-                      })
-                    ) {
-                      this.transactionPool.addTransaction(msg);
-                    }
+                  
+                         if (
+                           !this.transactionPool.transactionExist({
+                             address: this.wallet.publicKey,
+                           })
+                         ) {
+                         
+                           this.transactionPool.addTransaction(msg);
+                         }
                     break;
                   default:
                     return;
                 }
-
-        /* if (channel === CHANNELS.BLOCKCHAIN) {
-          this.blockchain.substituteChain(msg);
-        } */
- 
       },
     };
   }
