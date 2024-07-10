@@ -11,8 +11,7 @@ export default class Block {
         this.data = data;
         this.difficulty = difficulty;
         this.nonce = nonce;
-
-    }
+}
 
     static get genesisBlock() {
         return new this(GENESIS_DATA)
@@ -23,6 +22,7 @@ export default class Block {
     let {difficulty} = lastBlock;
     let hash, timestamp, index
     let nonce = 0;
+
 
     do {
         nonce++;
@@ -41,7 +41,6 @@ export default class Block {
         nonce,
         hash
     })
-
  }
 
  static adjustDifficulty({block, timestamp}) {
@@ -52,6 +51,4 @@ export default class Block {
         if(timestamp - block.timestamp > MINE_RATE) return difficulty - 1;
         return difficulty + 1;
  }
- 
- 
 }
