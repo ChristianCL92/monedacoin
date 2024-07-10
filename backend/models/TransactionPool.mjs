@@ -29,17 +29,17 @@ export default class TransactionPool {
     this.pendingTransactions = {};
   }
 
-  transactionExists({ address }) {
+  transactionExist({ address }) {
     const transactions = Object.values(this.pendingTransactions);
-
     return transactions.find(
       (transaction) => transaction.inputMap.address === address
     );
   }
 
   validateTransactions() {
-    return Object.values(this.pendingTransactions).filter((transaction) =>
+    console.log("Inside validateTransactions in pool");
+     return Object.values(this.pendingTransactions).filter((transaction) =>
       Transaction.validate(transaction)
-    );
+    ); 
   }
 }
