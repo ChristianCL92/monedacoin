@@ -8,15 +8,23 @@ import Wallet from "../models/Wallet.mjs";
 export const insertTransaction = (req, res) => {
     const {amount, recipient} = req.body;
 
-    let transaction = transactionPool.transactionExists({
+    if(!amount || !recipient) { 
+        return res.status(400).json({success: false, statusCode: 400, error: "Please provide an amount and recipient address"})
+    }
+
+    if(typeof amount !== "number") {
+        return res.status(400).json({success: false, statusCode: 400, error: "Amount must be a number"})
+    }
+
+    let transaction = transactionPool.transactionExist({
         address: wallet.publicKey
     });
-    
     try {
       if (transaction) {
         transaction.update({ sender: wallet, recipient, amount });
+        
       } else {
-        transaction = wallet.performTransaction({ recipient, amount });
+        transaction = wallet.performTransaction({ recipient, amount,  chain: blockchain.chain });
       }
     } catch (error) {
       return res
