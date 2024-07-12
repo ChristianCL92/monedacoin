@@ -1,4 +1,7 @@
 import crypto from 'crypto';
+import pkg from "elliptic";
+
+const { ec } = pkg;
 
 export const generateHash = (...args) => {
   return crypto
@@ -11,3 +14,10 @@ export const generateHash = (...args) => {
     )
     .digest('hex');
 };
+
+export const ellipticHash = ec('secp256k1');
+
+export const verifySignature = ({ publicKey, data, signature }) => {
+  const key = ellipticHash.keyFromPublic(publicKey, 'hex');
+  return key.verify(generateHash(data), signature);
+}
