@@ -1,0 +1,30 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 13vh;
+    background-color: lightgreen;
+    align-items: center;
+ 
+}
+
+nav, ul {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    list-style: none;
+    text-decoration: none;
+}
+
+nav, ul, a {
+    text-decoration: none;
+    color: black; 
+    font-size: 1.3rem;
+    margin-top: 1rem;
+}
