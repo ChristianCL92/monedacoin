@@ -7,7 +7,7 @@ const HandleTransaction = () => {
         const token = localStorage.getItem("token");
         console.log("Token retreived from localstorage In handleTransaction:", token);
         try {
-              const response = await fetch(
+               await fetch(
                 'http://localhost:4001/api/v1/wallet/transaction',
                 {
                   method: 'POST',
@@ -19,9 +19,8 @@ const HandleTransaction = () => {
                 }
               );
 
-              const data = await response.json();
+              await fetch('http://localhost:4001/api/v1/wallet/mine');
 
-              return data;
         } catch (error) {
             console.error('Transaction failed:', error);
         }
