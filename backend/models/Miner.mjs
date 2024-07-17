@@ -10,11 +10,20 @@ export default class Miner {
 
   mineTransaction() {
    const validTransactions = this.transactionPool.validateTransactions();
-    if(this.blockchain.chain.length > 1) {
+
+   if(validTransactions.length === 0) {
+      throw new Error('No transactions to mine');
+   }
+
+
+     if(this.blockchain.chain.length > 1) {
       const rewardTransaction = Transaction.rewardTransaction({miner: this.wallet,});
       validTransactions.push(rewardTransaction);
- }
+ } 
  
+
+
+
     this.blockchain.addBlock({ data: validTransactions });
     this.pubsub.broadcast();
     this.transactionPool.emptyTransactions();
