@@ -37,7 +37,6 @@ export default class TransactionPool {
   }
 
   validateTransactions() {
-    console.log("Inside validateTransactions in pool");
      return Object.values(this.pendingTransactions).filter((transaction) =>
       Transaction.validate(transaction)
     ); 
