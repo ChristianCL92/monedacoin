@@ -58,7 +58,6 @@ const synchronize = async () => {
   let response = await fetch(`${ROOT_NODE_ADDRESS}/api/v1/blockchain`);
   if (response.ok) {
     const result = await response.json();
-    console.log('SYNC', result.data);
     blockchain.substituteChain(result.data);
   }
 
