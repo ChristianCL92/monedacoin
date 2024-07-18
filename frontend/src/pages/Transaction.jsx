@@ -10,22 +10,17 @@ const [message, setMessage] = useState('');
 
 const handleSubmit = async (e) => { 
   e.preventDefault();
-   console.log("TransactionToMake", transactionToMake); 
 
   const data = {
     amount: Number(amount),
     recipient:recipient
   }
-
-  console.log("Transaction Data before API call:",data);
-  
   try {
        await transactionToMake(data);
       setMessage('Transaction successful!');
   } catch (error) {
     setMessage("Transaction failed!", error.message)
   }
-console.log("Transaction Data after API call:", data);
 
 }
  return (
