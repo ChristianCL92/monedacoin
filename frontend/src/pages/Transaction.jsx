@@ -3,26 +3,29 @@ import { useState } from 'react'
 import "../styles/Transaction.css"
 
 export const Transaction = ({transactionToMake}) => {
-const [amount, setAmount] = useState(0);
+const [amount, setAmount] = useState('');
 const [recipient, setRecipient] = useState('');
 const [message, setMessage] = useState('');
 
+
 const handleSubmit = async (e) => { 
   e.preventDefault();
-  console.log("TransactionToMake", transactionToMake);
-  const transactionData = {
+   console.log("TransactionToMake", transactionToMake); 
+
+  const data = {
     amount: Number(amount),
-    recipient
+    recipient:recipient
   }
-  console.log("Transaction Data:", transactionData);
+
+  console.log("Transaction Data before API call:",data);
+  
   try {
-      const data = await transactionToMake(transactionData);
-      console.log("Data received in Transaction Component:", data);
+       await transactionToMake(data);
       setMessage('Transaction successful!');
   } catch (error) {
-    setMessage("Transaction failed!", error)
+    setMessage("Transaction failed!", error.message)
   }
-console.log("Transaction Data:", transactionData);
+console.log("Transaction Data after API call:", data);
 
 }
  return (
