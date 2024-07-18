@@ -13,8 +13,8 @@ const Blocks = ({block}) => {
         <p>Nonce:{block.nonce}</p>
         <p>Difficulty:{block.difficulty}</p>
         <h5>Transaction data</h5>
-        {block.data.map((transaction, index) => (
-          < TransactionData key={index} transaction={transaction}/>
+        {block.data.map((transaction) => (
+          < TransactionData key={transaction.id} transaction={transaction}/>
         ))}
       </div>
     </>
