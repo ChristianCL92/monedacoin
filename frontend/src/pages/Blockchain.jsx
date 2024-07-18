@@ -2,11 +2,11 @@ import React from 'react';
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Blocks from '../components/Blocks';
+import "../styles/App.css"
 
 export const Blockchain = () => {
 
   const [blockchain, setBlockchain] = useState([]);
-  const [message, setMessage] = useState('');
 
   useEffect(() => {
     getBlockchain();
@@ -17,17 +17,14 @@ export const Blockchain = () => {
 
     if(response.ok) {
       const result = await response.json();
-      console.log("Blockchain Data response:", result);
       setBlockchain(result.data);
-      console.log("Blockchain Data:", blockchain);
-      
       
     }
   }
 
   return (
     <>
-      <div>
+      <div className='blockchain'>
         <h2>MonedaCoin</h2>
         {blockchain.map((block) => (
 
