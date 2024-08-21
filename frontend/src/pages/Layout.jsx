@@ -13,9 +13,6 @@ import "../styles/index.css"
           <nav>
             <ul>
               <li>
-                <NavLink to="/">Home</NavLink>
-              </li>
-              <li>
                 <NavLink to="/blockchain">Blockchain</NavLink>
               </li>
               <li>
