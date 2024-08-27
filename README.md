@@ -19,6 +19,9 @@ To run this project follow the commands.
    - JWT_TTL=90d
    - JWT_COOKIE_TTL=90
   
+7. npm run dev (backend and frontend)
+8. To connect other nodes in the backend run: "npm run dev-node"
+  
    
    
    
